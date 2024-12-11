@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Ayush</title>
+    <style>
+        /* Basic Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, #4a00e0, #8e2de2); /* Purple gradient */
+            padding: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+    
+        header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%; /* Makes the image a circle */
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+         color: rgb(255, 255, 255); /* White color in RGB */
+         text-decoration: none;
+         font-size: 18px;
+        }
+        /* Toggle Menu Styles */
+        .toggle-btn {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 25px;
+            width: 30px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .toggle-btn div {
+            width: 100%;
+            height: 5px;
+            background-color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links.active {
+            display: block;
+            width: 100%;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            height: 500px;
+            background: url('https://media.istockphoto.com/id/912299634/photo/computer-crime-concept.jpg?s=612x612&w=0&k=20&c=JOYSw69V4tr2hvnAt3HsOEbyXAoSXYulHrh8ifqqJXk=') no-repeat center center;
+            background-size: cover; /* Ensure background size is responsive */
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h2 {
+            font-size: 50px;
+            color: #FFD700;
+        }
+
+        .hero p {
+            color: #fff;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .hero .visit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff8c00, #ff2e63); /* Gradient button */
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .hero .visit-btn:hover {
+            background-color: #ff0000;
+        }
+    /* Topic section */
+
+      .topic-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: rgb(255, 69, 0); /* Red-Orange color */
+    text-shadow: 
+        0 0 5px rgb(255, 99, 71),   /* Light red glow */
+        0 0 10px rgb(255, 99, 71),  /* Stronger red glow */
+        0 0 15px rgb(255, 99, 71),  /* Even stronger red glow */
+        0 0 20px rgb(255, 99, 71),  /* Strong neon red effect */
+        0 0 30px rgb(255, 99, 71),  /* Glowing neon red */
+        0 0 40px rgb(255, 99, 71);  /* Extreme glowing red effect */
+    }
+    
+        /* New Section Styles */
+        .news-section {
+            background-color: linear-gradient(120deg, #e3fdf5, #ffe6fa);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .news-section h2 {
+          font-size: 36px;
+          margin-bottom: 20px;
+          color: rgb(255, 165, 0); /* Orange color */
+          text-shadow: 
+          0 0 5px rgb(255, 69, 0),   /* Light red glow */
+          0 0 10px rgb(255, 69, 0),  /* Stronger red glow */
+          0 0 15px rgb(255, 69, 0),  /* Even stronger red glow */
+          0 0 20px rgb(255, 69, 0),  /* Strong neon red effect */
+          0 0 30px rgb(255, 69, 0),  /* Glowing neon red */
+          0 0 40px rgb(255, 69, 0);  /* Extreme glowing red effect */
+        }
+
+        .news-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .news-buttons a {
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #0072ff, #00c6ff); /* Blue gradient */
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .news-buttons a:hover {
+            background-color: #008000;
+        }
+
+        /* Topic Section Styles */
+        .topic-section {
+            display: none;
+            padding: 20px;
+            background: linear-gradient(120deg, #e3fdf5, #ffe6fa); /* Pastel gradient */
+            text-align: center;
+        }
+
+        .topic-section.active {
+            display: block;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: block;
+            }
+
+            .toggle-btn {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        a:focus {
+            outline: 2px solid #ff0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="https://ayushsingh934.wordpress.com/wp-content/uploads/2024/12/image_editor_output_image-174385776-1733890112635322075900155763593.jpg" alt="Logo">
+        <h1>Blaze News</h1>
+    </div>
+    <div class="toggle-btn" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showSection('hero')">Home</a></li>
+            <li><a href="#" onclick="showSection('about')">About</a></li>
+            <li><a href="#" onclick="showSection('news-section')">News</a></li>
+            <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<div id="hero" class="hero active">
+    <p>Welcome, Cyber News!</p>
+    <a href="#" class="visit-btn">Visit Us</a>
+</div>
+
+<!-- News Section -->
+<div id="news-section" class="news-section">
+    <h2>Explore Cyber Topics</h2>
+    <div class="news-buttons">
+        <a href="#" onclick="showSection('cyber-attacks')">Cyber Attacks</a>
+        <a href="#" onclick="showSection('hacking-news')">Hacking News</a>
+        <a href="#" onclick="showSection('vulnerability')">Vulnerability</a>
+        <a href="#" onclick="showSection('data-breaches')">Data Breaches</a>
+        <a href="#" onclick="showSection('indian-hackers')">Indian Hackers</a>
+        <a href="#" onclick="showSection('web-hacking')">Web Hacking</a>
+    </div>
+</div>
+
+<!-- Cyber Attacks Section -->
+
+<div id="cyber-attacks" class="topic-section">
+        <h1>Cyber Attacks</h>
+      <div class="image-container">
+        <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Cyber Attacks">        
+       </div>
+        <h2>⚡ THN Recap: Top Cybersecurity Threats, Tools and Tips (Dec 2 - 8)</h2>
+        <p>This week's cyber world is like a big spy movie. Hackers are breaking into other hackers' setups, sneaky malware is hiding in popular software, and AI-powered scams are tricking even the smartest of us. On the other side, the good guys are busting secret online markets and kicking out shady chat rooms, while big companies rush to fix new security holes before attackers can jump in.Want to know who's hacking who, how they're doing it, and what's being done to fight back? Stick around—this recap has the scoop.</p>
+        <h2>⚡ Threat of the Week</h2>
+    <p>Turla Hackers Hijack Pakistan Hackers' Infrastructure — Imagine one hacker group sneaking into another hacker group's secret hideout and using their stuff to carry out their own missions. That's basically what the Russia-linked Turla group has been doing since December 2022. They broke into the servers of a Pakistani hacking team called Storm-0156 and used those servers to spy on government and military targets in Afghanistan and India. By doing this, Turla not only got easy access to important information but also made it way harder for anyone to figure out who was actually running the show. This is a classic move for Turla—they often hijack other hackers' operations to hide their tracks and make it super confusing to tell who's really behind these attacks.</p>
+</div>
+
+    <!-- hacking news Section -->
+    
+<div id="hacking-news" class="topic-section">
+    <h1>Hacking News</h1>
+    <div class="image-container">
+        <img src="https://images.pexels.com/photos/5475793/pexels-photo-5475793.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load" alt="Hacking News">
+    </div>
+    <p>Stay updated with the latest hacking news.</p>
+</div>
+
+<!-- Vulnerability Section -->
+<div id="vulnerability" class="topic-section">
+    <h1>Vulnerability</h1>
+    <div class="image-container">
+        <img src="https://images.pexels.com/photos/5380589/pexels-photo-5380589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Vulnerability">
+    </div>
+    <p>Understand system vulnerabilities and their mitigations.</p>
+</div>
+
+<!-- Data Breaches Section -->
+<div id="data-breaches" class="topic-section">
+    <h1>Data Breaches</h1>
+    <div class="image-container">
+        <img src="https://media.istockphoto.com/id/2162096667/photo/virus-alert-red-triangle-icon-system-hacked-error-sign-malware-attention-danger-symbol.jpg?s=612x612&w=0&k=20&c=Jkymd5DGML3C2jDa-qy_ksDdihR6yra60TPyOeVj6is=" alt="Data Breaches">
+    </div>
+    <p>Explore data breaches and their impacts.</p>
+</div>
+
+<!-- Indian Hackers Section -->
+<div id="indian-hackers" class="topic-section">
+    <h1>Indian Hackers</h1>
+    <div class="image-container">
+        <img src="https://images.pexels.com/photos/5380607/pexels-photo-5380607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Indian Hackers">
+    </div>
+    <p>Discover ethical hackers from India.</p>
+</div>
+
+<!-- Web Hacking Section -->
+<div id="web-hacking" class="topic-section">
+    <h1>Web Hacking</h1>
+    <div class="image-container">
+        <img src="https://images.pexels.com/photos/5475786/pexels-photo-5475786.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load" alt="Web Hacking">
+    </div>
+    <p>Learn about web application hacking and security.</p>
+</div>
+
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.hero, .news-section, .topic-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        // Show the clicked section
+        document.getElementById(sectionId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
